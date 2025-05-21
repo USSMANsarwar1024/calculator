@@ -15,7 +15,7 @@ phases:
   build:
     commands:
       - echo "Copying source files to build-output directory..."
-      - cp index.html style.css script.js build-output/
+      - cp index.html styles.css script.js build-output/
       - cp -r WEB-INF build-output/
       - echo "Packaging WAR file..."
       - cd build-output
