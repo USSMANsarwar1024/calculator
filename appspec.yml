@@ -1,0 +1,15 @@
+version: 0.0
+os: linux
+files:
+  - source: calculator.war
+    destination: /opt/tomcat/webapps
+
+hooks:
+  BeforeInstall:
+    - location: stop_tomcat.sh
+      timeout: 20
+      runas: ubuntu
+  AfterInstall:
+    - location: start_tomcat.sh
+      timeout: 20
+      runas: ubuntu
