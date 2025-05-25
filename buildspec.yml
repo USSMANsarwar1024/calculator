@@ -3,7 +3,9 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      java: openjdk11
+      java: corretto11  # or openjdk11 if supported by image
+      runtime: docker
+
   build:
     commands:
       - echo Building calculator.war...
