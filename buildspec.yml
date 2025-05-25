@@ -3,29 +3,20 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      java: corretto11
-    commands:
-      - echo "Installing dependencies (if any)..."
-
-  pre_build:
-    commands:
-      - echo "Preparing build..."
-      - mkdir -p build-output/WEB-INF
-
+      java: openjdk11
   build:
     commands:
-      - echo "Copying source files to build-output directory..."
-      - cp index.html styles.css script.js build-output/
-      - cp -r WEB-INF build-output/
-      - echo "Packaging WAR file..."
-      - cd build-output
-      - jar -cvf calculator.war *
+      - echo Building calculator.war...
+      - mvn clean package
+      - echo Creating deployment bundle...
+      - mkdir -p deployment_bundle/scripts
+      - cp target/calculator.war deployment_bundle/
+      - cp appspec.yml deployment_bundle/
+      - cp scripts/*.sh deployment_bundle/scripts/
+      - cd deployment_bundle
+      - zip -r ../calculator-deployment.zip .
       - cd ..
-
-  post_build:
-    commands:
-      - echo "Build complete. WAR file created."
 
 artifacts:
   files:
-    - build-output/calculator.war
+    - calculator-deployment.zip
