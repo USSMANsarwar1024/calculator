@@ -2,22 +2,23 @@ version: 0.2
 
 phases:
   install:
-    runtime-versions:
-      java: corretto11
     commands:
-      - echo "Installing dependencies..."
-  pre_build:
-    commands:
-      - echo "Running pre-build steps..."
+      - echo "Installing any needed tools..."
+      # You might install npm packages if needed:
+      # - npm install
   build:
     commands:
-      - echo "Building..."
-      - mvn package
+      - echo "Building frontend application..."
+      # For simple HTML/JS projects, you might just:
+      # - Validate files exist
+      - ls -la
+      # - Minify CSS/JS if needed
+      # - Run tests if you have any
   post_build:
     commands:
-      - echo "Build completed!"
+      - echo "Build completed successfully!"
 
 artifacts:
   files:
-    - 'target/*.jar'
+    - '**/*'  # This packages all your files
   discard-paths: no
