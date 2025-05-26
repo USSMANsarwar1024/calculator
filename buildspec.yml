@@ -3,21 +3,21 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      java: corretto11  # or openjdk11 if supported by image
-
+      java: corretto11
+    commands:
+      - echo "Installing dependencies..."
+  pre_build:
+    commands:
+      - echo "Running pre-build steps..."
   build:
     commands:
-      - echo Building calculator.war...
-      - mvn clean package
-      - echo Creating deployment bundle...
-      - mkdir -p deployment_bundle/scripts
-      - cp target/calculator.war deployment_bundle/
-      - cp appspec.yml deployment_bundle/
-      - cp scripts/*.sh deployment_bundle/scripts/
-      - cd deployment_bundle
-      - zip -r ../calculator-deployment.zip .
-      - cd ..
+      - echo "Building..."
+      - mvn package
+  post_build:
+    commands:
+      - echo "Build completed!"
 
 artifacts:
   files:
-    - calculator-deployment.zip
+    - 'target/*.jar'
+  discard-paths: no
