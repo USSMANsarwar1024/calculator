@@ -1,2 +1,3 @@
 #!/bin/bash
-sudo systemctl restart tomcat9
+/opt/tomcat/bin/startup.sh
+/opt/tomcat/bin/shutdown.sh
