@@ -6,12 +6,7 @@ files:
     overwrite: true
 
 hooks:
-  BeforeInstall:
-    - location: scripts/clean_root.sh
-      timeout: 60
-      runas: ubuntu
-
-  AfterInstall:
+    AfterInstall:
     - location: scripts/restart_tomcat.sh
       timeout: 60
       runas: ubuntu
