@@ -3,9 +3,15 @@ os: linux
 files:
   - source: /
     destination: /opt/tomcat/webapps/ROOT
+    overwrite: true
 
 hooks:
-  AfterInstall:
-    - location: restart_tomcat.sh
+  BeforeInstall:
+    - location: scripts/clean_root.sh
       timeout: 60
-      runas: ubuntu   # or the user that owns tomcat files
+      runas: ubuntu
+
+  AfterInstall:
+    - location: scripts/restart_tomcat.sh
+      timeout: 60
+      runas: ubuntu
