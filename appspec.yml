@@ -6,6 +6,6 @@ files:
 
 hooks:
   AfterInstall:
-    - location: scripts/restart_tomcat.sh
+    - location: restart_tomcat.sh
       timeout: 60
-      runas: ubuntu
+      runas: ubuntu   # or the user that owns tomcat files
