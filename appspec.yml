@@ -1,11 +1,11 @@
 version: 0.0
 os: linux
 files:
-  - source: calculator.war
-    destination: /opt/tomcat/webapps
+  - source: /
+    destination: /opt/tomcat/webapps/ROOT
 
 hooks:
   AfterInstall:
-    - location: restart_tomcat.sh
+    - location: scripts/restart_tomcat.sh
       timeout: 60
       runas: ubuntu
