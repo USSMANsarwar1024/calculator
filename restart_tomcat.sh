@@ -4,6 +4,9 @@
 sudo chmod +x /opt/tomcat/bin/*.sh
 sudo su
 # Gracefully restart Tomcat
-sudo /opt/tomcat/bin/shutdown.sh
+cd /opt/tomcat/bin
+./shutdown.sh
 sleep 5
-sudo /opt/tomcat/bin/startup.sh
+
+cd /opt/tomcat/bin/
+./startup.sh
